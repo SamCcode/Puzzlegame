@@ -3,8 +3,18 @@
     
 }
 
-.canvaswrapper {
+body {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.canvaswrapper {
+    width: 240px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 45px;
 }
 
 p {
@@ -17,17 +27,17 @@ position: absolute;
 }
 
 .imgwrapper {
-    height: 210px;
-    width: 210px;
+    height: 214px;
+    width: 214px;
     display: flex;
     flex-wrap: wrap;
+    border: 2px solid black;
 }
 .squares {
     width: 70px;
     height: 70px;
-    border: 2px solid black;
 }
 
-#piece{
-    display: none;
+.pieces {
+ margin: 5px;
 }
