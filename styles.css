@@ -41,3 +41,7 @@ position: absolute;
 .pieces {
  margin: 5px;
 }
+
+.pieces:hover {
+    cursor: pointer;
+}
