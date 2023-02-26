@@ -1,0 +1,33 @@
+*{
+    box-sizing: border-box;
+    
+}
+
+.canvaswrapper {
+    display: flex;
+}
+
+p {
+position: absolute;
+}
+
+.div {
+    width: 70px;
+    height: 70px;
+}
+
+.imgwrapper {
+    height: 210px;
+    width: 210px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.squares {
+    width: 70px;
+    height: 70px;
+    border: 2px solid black;
+}
+
+#piece{
+    display: none;
+}
