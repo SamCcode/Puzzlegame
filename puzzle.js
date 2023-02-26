@@ -10,6 +10,11 @@ image.src = "bild.png";
 let rows = 3;
 let columns = 3;
 let canvasEl;
+let elem;
+let num1;
+let num2;
+
+// för att dela bilden
 function cutImageUp() {
     for(var x = 0; x < columns; ++x) {
         for(var y = 0; y < rows; ++y) {
@@ -29,9 +34,10 @@ function cutImageUp() {
         }    
     }
     
-    addEmptySquares()
+addEmptySquares()
 }
 
+// för att göra tomma rutor att dra bitarna till
 function addEmptySquares(){
     for (let i = 0; i<canvasPieces.length; i++) {
         let emptySquare = document.createElement("div");
@@ -43,54 +49,39 @@ function addEmptySquares(){
     addEventListnersToWrapper()
 }
 
-let elem;
+// sätta eventlyssnare på bitarna man vill dra
 function addEventListnersToPieces(canvasEl) {
     canvasEl.addEventListener("dragstart", (el)=>{
         elem = el.target;
-        mouseDown(elem)
+        num2 = canvasPieces.indexOf(elem);
+        localStorage.setItem("dragedPiece", elem.innerHTML);
+        setTimeout(() => {
+            canvasEl.style.display = "none";
+        }, 0);
+        
     })
 }
 
+// för att sätta eventlyssnare under tiden man drar
 function addEventListnersToWrapper(){
-    
-    emptySquareList.forEach(emptySquare => {
-        
+     emptySquareList.forEach(emptySquare => {
         emptySquare.addEventListener('dragenter', (e) =>{
-            dragEnter(e)
+            e.preventDefault();
             num1 = emptySquareList.indexOf(emptySquare)
         })
         emptySquare.addEventListener('dragover', (e)=> {
-            dragOver(e)
+            e.preventDefault();
         });
         emptySquare.addEventListener('dragleave', (e)=> {
-            dragLeave(e)
+            e.preventDefault();
         });
         emptySquare.addEventListener('drop', (e) => {
             drop(e)
-            
-
-            // console.log(emptySquareList.indexOf(emptySquare));
         });
     });
 }
 
-function dragEnter(e) {
-    // console.log(e);
-    e.preventDefault();
-}
-
-function dragOver(e) {
-    // console.log(e);
-    e.preventDefault();
-}
-
-function dragLeave(e) {
-    e.preventDefault();
-}
-
-let num1;
-let num2;
-
+// vad som ska hända när rätt ruta släpps på rätt nummer
 function drop(e) {
     if (num1 === 0 && num2 === 0 || num1 === 1 && num2 === 3 || num1 === 2 && num2 === 6 ||num1 === 3 && num2 === 1 || num1 === 4 && num2 === 4 || num1 === 5 && num2 === 7 || num1 === 6 && num2 === 2 || num1 === 7 && num2 === 5 || num1 === 8 && num2 === 8) {
         console.log("hej");
@@ -103,16 +94,6 @@ function drop(e) {
     } else {
         elem.style.display = "block";
     }
-    
-    console.log(elem);
 }
-;
-function mouseDown(el) {
-    num2 = canvasPieces.indexOf(el);
-    localStorage.setItem("dragedPiece", el.innerHTML);
-    setTimeout(() => {
-        el.style.display = "none";
-    }, 0);
-    
-}
+
 
